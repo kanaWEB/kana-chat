@@ -1,0 +1,38 @@
+<?php
+include(CORE_VIEWS."forms/Form.class.php");
+include(CORE_DATA."users.data");
+
+$dynamic_js[] = USER_VIEWS."chat/js/chat.js";
+
+$form_name = "Chat";
+$form = new Form($form_name);
+
+$form->input([
+	"type" => "select",
+	"id" => "chat_user",
+	"name" => "User",
+	"options" => $data,
+	"selected" => false
+	]);
+
+$form->input([
+	"type" => "text",
+	"id" => "chat_message",
+	"name" => "Message",
+	"placeholder" => "Hello Man!",
+	"selected" => false
+	]);
+
+$form->input([
+	"type" => "hidden",
+	"id" => "chat_currentuser",
+	"value" => $currentUser->nickname()
+	]);
+
+$form->display($tpl,false);
+
+$tpl->assign("onclick","chat_send");
+$tpl->draw(CORE_VIEWS."buttons/send");
+$tpl->assign("id","chat_area");
+$tpl->draw(CORE_VIEWS."grids/span");
+?>

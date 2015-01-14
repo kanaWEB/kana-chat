@@ -1,0 +1,5 @@
+<?php
+include(CORE_DATA."users.data");
+var_dump($data);
+
+?>
